@@ -8,6 +8,7 @@ public class SocialNetwork implements RedSocial {
     private List<Usuario> usuariosRedSocial;
     private List<Publicacion> publicacionesRedSocial;
     private String nombreRedSocial;
+    private Usuario usuarioSesionActiva;
 
     /**
      * constructor SocialNetwork
@@ -77,8 +78,9 @@ public class SocialNetwork implements RedSocial {
      */
 
     public void logout(){
-        if(!(getActiveUser() == null)){
-            getActiveUser().setSesionActiva(false);
+        if(existeUsuarioSesionActiva()){
+            this.usuarioSesionActiva.setSesionActiva(false);
+            System.out.println("El usuario " + this.usuarioSesionActiva.getNombreUsuario() + " ha cerrado sesion");
         }
         else{
             System.out.println("No existe usuario con sesion activa en la red social");
@@ -131,21 +133,21 @@ public class SocialNetwork implements RedSocial {
     }
 
     /**
-     * obtener usuario con sesion activa en la red social
-     * @return usuarioSesionActiva
+     * verificar existencia de un usuario logeado+ obtener dicho usuario
+     * @return boolean
      */
-    public Usuario getActiveUser(){
-        for(Usuario usuarioSesionActiva : this.usuariosRedSocial){
-            if (usuarioSesionActiva.isSesionActiva() == true){
-                return usuarioSesionActiva;
+    public boolean existeUsuarioSesionActiva (){
+        for(Usuario usuario : this.usuariosRedSocial){
+            if(usuario.isSesionActiva() == true){
+                this.usuarioSesionActiva  = usuario;
+                return true;
             }
-
         }
+        return false;
 
-        return null;
     }
 
-    //-------------------------------------------------------------------------------------------------------------------------------
+
     // ESTOY TESTEANDO ALGUNAS COSAS
     public String imprimirUsuarios(){
         String cadena = new String();
@@ -161,5 +163,9 @@ public class SocialNetwork implements RedSocial {
                 ", nombreRedSocial='" + nombreRedSocial + '\'' +
                 '}';
     }
+
 }
+
+
+
 
