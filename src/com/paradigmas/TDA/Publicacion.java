@@ -27,6 +27,7 @@ public class Publicacion {
         this.tipoPublicacion = tipoPublicacion;
         this.autor = autor;
         this.fechaPublicacion = fechaPublicacion;
+
     }
 
     public int getId() {

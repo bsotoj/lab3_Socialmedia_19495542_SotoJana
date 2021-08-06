@@ -2,13 +2,15 @@ package com.paradigmas.TDA;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-public class SocialNetwork implements RedSocial {
+public class SocialNetwork implements RedSocial,Authentication,Visualize {
     private List<Usuario> usuariosRedSocial;
     private List<Publicacion> publicacionesRedSocial;
     private String nombreRedSocial;
-    private Usuario usuarioSesionActiva;
+    private Usuario usuarioSesionActiva; // cada vez que se use el metodo existeUsuarioSesionActiva este atributo se sobreescribe
+                                        // la direccion de memoria con la direccion del nuevo usuario con sesion iniciada
 
     /**
      * constructor SocialNetwork
@@ -88,7 +90,34 @@ public class SocialNetwork implements RedSocial {
 
     }
     /**
-     * verificar la existencia de un usuario
+     * POST PUBLICADO EN EL MURO DEL USUARIO CON SESION ACTIVA
+     * @param tipoPublicacion
+     * @param contenido
+     * @return
+     */
+    @Override
+    public void post(String tipoPublicacion, String contenido) {
+        if((!existePublicacion(publicacionesRedSocial, tipoPublicacion, contenido)) && existeUsuarioSesionActiva()){
+            Date fechaPost = new Date();
+            //public Publicacion(String contenido, String tipoPublicacion, Usuario autor, Date fechaPublicacion) {
+            Publicacion nuevaPublicacion = new Publicacion(contenido,tipoPublicacion,usuarioSesionActiva, fechaPost);
+            this.publicacionesRedSocial.add(nuevaPublicacion);
+            usuarioSesionActiva.getPublicacionesRealizadas().add(nuevaPublicacion);
+            System.out.println("Se ha realizado la publicacion " + contenido + " por el usuario " + usuarioSesionActiva.getNombreUsuario());
+            return;
+
+        }
+        System.out.println("Ya existe una publicacion con ese titulo " + contenido + " del tipo " + tipoPublicacion);
+    }
+
+    public void post(String tipoPublicacion, String contenido, List<Usuario> listaUsuarios){
+        
+    }
+
+
+    //------------------------------------------------------------------------------------
+    /**
+     * verificar la existencia de un usuario en socialnetwork
      * @param listaUsuarios
      * @param nombreUsuario
      * @return boolean
@@ -104,6 +133,25 @@ public class SocialNetwork implements RedSocial {
         }
         return false;
 
+    }
+
+    /**
+     * verificar la existencia de una publicacion en socialnetwork
+     * @param listaPublicaciones
+     * @param tipoPublicacion
+     * @param contenido
+     * @return boolean
+     */
+    public boolean existePublicacion(List<Publicacion> listaPublicaciones, String tipoPublicacion, String contenido){
+        if(listaPublicaciones == null){
+            return false;
+        }
+        for(Publicacion publicacionActual: listaPublicaciones){
+            if(publicacionActual.getContenido() == contenido && publicacionActual.getTipoPublicacion() == tipoPublicacion ){
+                return true;
+            }
+        }
+        return false;
     }
 
     public List<Usuario> getUsuariosRedSocial() {
@@ -133,7 +181,7 @@ public class SocialNetwork implements RedSocial {
     }
 
     /**
-     * verificar existencia de un usuario logeado+ obtener dicho usuario
+     * verificar existencia de un usuario logeado en socialnetwork +  obtener dicho usuario
      * @return boolean
      */
     public boolean existeUsuarioSesionActiva (){
@@ -163,6 +211,7 @@ public class SocialNetwork implements RedSocial {
                 ", nombreRedSocial='" + nombreRedSocial + '\'' +
                 '}';
     }
+
 
 }
 
