@@ -109,12 +109,14 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
         }
         System.out.println("Ya existe una publicacion con ese titulo " + contenido + " del tipo " + tipoPublicacion);
     }
-
-    public void post(String tipoPublicacion, String contenido, List<Usuario> listaUsuarios){
-        
+   
+    public boolean usuariosExistenEnRedSocial(List<Usuario> usuariosAVerificar){
+        void boolean respuesta;
+        for(Usuario usuarioActual: usuariosAVerificar){
+            boolean = usuariosRedSocial.contains(usuarioActual);
+        }
+        return respuesta;
     }
-
-
     //------------------------------------------------------------------------------------
     /**
      * verificar la existencia de un usuario en socialnetwork
