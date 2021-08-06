@@ -1,19 +1,18 @@
 package com.paradigmas.TDA;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Usuario {
-    package com.company.TDA;
-
-import java.util.List;
 
     public class Usuario {
         private static int contadorIdActual = 0;
         private int id;
         private String nombreUsuario;
         private String contrasegna;
-        private List<Publicacion> publicaciones;
-        private List<Usuario> contactosUsuario;
+        private List<Publicacion> publicacionesRealizadas;
+        private List<Publicacion> publicacionesDirigidasAlUsuario; //considera tanto las publicaciones que se le envian
+        //como los share hacia el usuario
+        private List<String> usuariosQueSigue; //lista de strings que contiene los nombres de los usuarios que sigue
         private boolean sesionActiva = false;
 
         /**
@@ -26,6 +25,9 @@ import java.util.List;
             setId(++contadorIdActual);
             this.nombreUsuario = nombreUsuario;
             this.contrasegna = contrasegna;
+            this.publicacionesRealizadas = new ArrayList<>();
+            this.publicacionesDirigidasAlUsuario= new ArrayList<>();
+            this.usuariosQueSigue = new ArrayList<>();
         }
 
 
@@ -53,21 +55,6 @@ import java.util.List;
             this.contrasegna = contrasegna;
         }
 
-        public List<Publicacion> getPublicacionesRealizadas() {
-            return publicacionesRealizadas;
-        }
-
-        public void setPublicacionesRealizadas(List<Publicacion> publicacionesRealizadas) {
-            this.publicacionesRealizadas = publicacionesRealizadas;
-        }
-
-        public List<Contactos> getContactosUsuario() {
-            return contactosUsuario;
-        }
-
-        public void setContactosUsuario(List<Contactos> contactosUsuario) {
-            this.contactosUsuario = contactosUsuario;
-        }
 
         public boolean isSesionActiva() {
             return sesionActiva;
@@ -76,6 +63,18 @@ import java.util.List;
         public void setSesionActiva(boolean sesionActiva) {
             this.sesionActiva = sesionActiva;
         }
+
+        public List<Publicacion> getPublicacionesRealizadas() {
+            return publicacionesRealizadas;
+        }
+
+        public List<Publicacion> getPublicacionesDirigidasAlUsuario() {
+            return publicacionesDirigidasAlUsuario;
+        }
+
+        public List<String> getUsuariosQueSigue() {
+            return usuariosQueSigue;
+        }
     }
 
-}
+
