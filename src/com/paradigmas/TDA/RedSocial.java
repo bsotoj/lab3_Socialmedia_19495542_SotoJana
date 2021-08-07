@@ -2,7 +2,7 @@ package com.paradigmas.TDA;
 
 public interface RedSocial {
     void post(String tipoPublicacion,String Contenido);
-    //void follow(String nombreUsuarioASeguir);
+    void follow(String nombreUsuarioASeguir);
     //void share(int idPost);
     //void visualize();
 

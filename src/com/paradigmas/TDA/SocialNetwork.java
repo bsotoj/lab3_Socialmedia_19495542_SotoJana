@@ -95,7 +95,7 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
      * @param contenido
      * @return
      */
-    @Override
+
     public void post(String tipoPublicacion, String contenido) {
         if((!existePublicacion(publicacionesRedSocial, tipoPublicacion, contenido)) && existeUsuarioSesionActiva()){
             Date fechaPost = new Date();
@@ -109,6 +109,7 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
         }
         System.out.println("Ya existe una publicacion con ese titulo " + contenido + " del tipo " + tipoPublicacion);
     }
+
 
     /**
      * POST PUBLICADO EN EL MURO DE OTROS USUARIOS
@@ -129,6 +130,27 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
             return;
         }
         System.out.println("no se ha podido realizar la publicacion");
+    }
+
+    /**
+     * FOLLOW
+     * Usuario con sesion activa puede seguir a otro usuario de la red social
+     * @param nombreUsuarioASeguir
+     * @return void
+     */
+    public void follow(String nombreUsuarioASeguir) {
+        if((existeUsuario(usuariosRedSocial, nombreUsuarioASeguir)) && existeUsuarioSesionActiva()){
+            if(!(nombreUsuarioASeguir == usuarioSesionActiva.getNombreUsuario())){ //un usuario no se puede seguir a si mismo
+                usuarioSesionActiva.getUsuariosQueSigue().add(nombreUsuarioASeguir);
+                System.out.println("el usuario " + usuarioSesionActiva.getNombreUsuario() + " sigue al usuario " + nombreUsuarioASeguir);
+            }
+            else{
+                System.out.println("El usuario " + usuarioSesionActiva.getNombreUsuario() + " no se puede seguir a si mismo");
+            }
+        }
+        else{
+            System.out.println("no es posible realizar la operacion, el usuario a seguir no se encuentra en la red social o no se ha iniciado sesion");
+        }
     }
     /**
      * verificar la existencia de un grupo de usuarios en la red social
