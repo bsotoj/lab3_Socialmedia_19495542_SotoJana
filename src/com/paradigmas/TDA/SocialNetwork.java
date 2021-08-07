@@ -109,15 +109,40 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
         }
         System.out.println("Ya existe una publicacion con ese titulo " + contenido + " del tipo " + tipoPublicacion);
     }
-   
+
+    /**
+     * POST PUBLICADO EN EL MURO DE OTROS USUARIOS
+     * @param tipoPublicacion
+     * @param contenido
+     * @param listaUsuariosPublicacionDirigida
+     */
+    public void post(String tipoPublicacion, String contenido, List<Usuario> listaUsuariosPublicacionDirigida){
+        if((!existePublicacion(publicacionesRedSocial,tipoPublicacion,contenido)) && existeUsuarioSesionActiva() && usuariosExistenEnRedSocial(listaUsuariosPublicacionDirigida)){
+            Date fechaPost = new Date();
+            Publicacion nuevaPublicacion = new Publicacion(contenido,tipoPublicacion,usuarioSesionActiva,fechaPost);
+            this.publicacionesRedSocial.add(nuevaPublicacion);
+            usuarioSesionActiva.getPublicacionesRealizadas().add(nuevaPublicacion);
+            for(Usuario usuario : listaUsuariosPublicacionDirigida){
+                usuario.getPublicacionesDirigidasAlUsuario().add(nuevaPublicacion);
+            }
+            System.out.println("La publicacion ha sido posteada en el muro de los usuarios con exito");
+            return;
+        }
+        System.out.println("no se ha podido realizar la publicacion");
+    }
+    /**
+     * verificar la existencia de un grupo de usuarios en la red social
+     * @param usuariosAVerificar
+     * @return boolean
+     */
     public boolean usuariosExistenEnRedSocial(List<Usuario> usuariosAVerificar){
-        void boolean respuesta;
+        boolean respuesta = false;
         for(Usuario usuarioActual: usuariosAVerificar){
-            boolean = usuariosRedSocial.contains(usuarioActual);
+            respuesta = usuariosRedSocial.contains(usuarioActual);
         }
         return respuesta;
     }
-    //------------------------------------------------------------------------------------
+
     /**
      * verificar la existencia de un usuario en socialnetwork
      * @param listaUsuarios
