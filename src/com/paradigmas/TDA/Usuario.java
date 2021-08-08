@@ -1,6 +1,7 @@
 package com.paradigmas.TDA;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -12,7 +13,7 @@ import java.util.List;
         private List<Publicacion> publicacionesRealizadas;
         private List<Publicacion> publicacionesDirigidasAlUsuario;
         private List<Publicacion> publicacionesCompartidasPorElUsuario;
-        private List<Publicacion> fechaPublicacionCompartidaPorElUsuario;
+        private List<Date> fechaPublicacionCompartidaPorElUsuario;
 
         private List<String> usuariosQueSigue; //lista de strings que contiene los nombres de los usuarios que sigue
         private boolean sesionActiva = false;
@@ -30,6 +31,8 @@ import java.util.List;
             this.publicacionesRealizadas = new ArrayList<>();
             this.publicacionesDirigidasAlUsuario= new ArrayList<>();
             this.usuariosQueSigue = new ArrayList<>();
+            this.publicacionesCompartidasPorElUsuario = new ArrayList<>();
+            this.fechaPublicacionCompartidaPorElUsuario = new ArrayList<>();
         }
 
 
@@ -83,7 +86,7 @@ import java.util.List;
             return publicacionesCompartidasPorElUsuario;
         }
 
-        public List<Publicacion> getFechaPublicacionCompartidaPorElUsuario() {
+        public List<Date> getFechaPublicacionCompartidaPorElUsuario() {
             return fechaPublicacionCompartidaPorElUsuario;
         }
     }

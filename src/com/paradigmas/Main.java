@@ -32,12 +32,17 @@ public class Main {
         listaUsuarios.add("usuario4");
         sn1.post("video","mi primer post");
         sn1.post("foto","mi primera foto dirigida a usuarios",listaUsuarios);
-        System.out.println("contenido de la publicacion: " + sn1.getUsuariosRedSocial().get(0).getPublicacionesDirigidasAlUsuario().get(0).getContenido() + " autor: " + sn1.getUsuariosRedSocial().get(0).getPublicacionesDirigidasAlUsuario().get(0).getAutor().getNombreUsuario() );
-        System.out.println("contenido de la publicacion: " + sn1.getUsuariosRedSocial().get(2).getPublicacionesDirigidasAlUsuario().get(0).getContenido()+ " autor: " + sn1.getUsuariosRedSocial().get(2).getPublicacionesDirigidasAlUsuario().get(0).getAutor().getNombreUsuario());
-        System.out.println("contenido de la publicacion: " + sn1.getUsuariosRedSocial().get(3).getPublicacionesDirigidasAlUsuario().get(0).getContenido()+ " autor: " + sn1.getUsuariosRedSocial().get(3).getPublicacionesDirigidasAlUsuario().get(0).getAutor().getNombreUsuario());
+        //System.out.println("contenido de la publicacion: " + sn1.getUsuariosRedSocial().get(0).getPublicacionesDirigidasAlUsuario().get(0).getContenido() + " autor: " + sn1.getUsuariosRedSocial().get(0).getPublicacionesDirigidasAlUsuario().get(0).getAutor().getNombreUsuario() );
+        //System.out.println("contenido de la publicacion: " + sn1.getUsuariosRedSocial().get(2).getPublicacionesDirigidasAlUsuario().get(0).getContenido()+ " autor: " + sn1.getUsuariosRedSocial().get(2).getPublicacionesDirigidasAlUsuario().get(0).getAutor().getNombreUsuario());
+        //System.out.println("contenido de la publicacion: " + sn1.getUsuariosRedSocial().get(3).getPublicacionesDirigidasAlUsuario().get(0).getContenido()+ " autor: " + sn1.getUsuariosRedSocial().get(3).getPublicacionesDirigidasAlUsuario().get(0).getAutor().getNombreUsuario());
         // Usuario newUsuario = sn1.getUsuariosRedSocial().get(0);
         sn1.follow("usuario4");
-        System.out.println("usuario: "+sn1.getUsuariosRedSocial().get(0).getNombreUsuario()+" sigue a " +sn1.getUsuariosRedSocial().get(0).getUsuariosQueSigue().get(0));
+        //System.out.println("usuario: "+sn1.getUsuariosRedSocial().get(0).getNombreUsuario()+" sigue a " +sn1.getUsuariosRedSocial().get(0).getUsuariosQueSigue().get(0));
+        sn1.share(2);
+        sn1.share(1);
+        System.out.println( sn1.getUsuariosRedSocial().get(0).getPublicacionesCompartidasPorElUsuario().get(0).getId());
+        System.out.println( sn1.getUsuariosRedSocial().get(0).getPublicacionesCompartidasPorElUsuario().get(0).getTipoPublicacion());
+        System.out.println(sn1.getUsuariosRedSocial().get(0).getPublicacionesCompartidasPorElUsuario().get(0).getContenido());
         sn1.logout();
 
        // System.out.println(sn1.getUsuariosRedSocial().contains(newUsuario));

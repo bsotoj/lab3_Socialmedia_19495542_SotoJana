@@ -143,7 +143,8 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
         if((existeUsuario(usuariosRedSocial, nombreUsuarioASeguir)) && existeUsuarioSesionActiva()){
             if(!(nombreUsuarioASeguir == usuarioSesionActiva.getNombreUsuario())){ //un usuario no se puede seguir a si mismo
                 usuarioSesionActiva.getUsuariosQueSigue().add(nombreUsuarioASeguir);
-                System.out.println("el usuario " + usuarioSesionActiva.getNombreUsuario() + " sigue al usuario " + nombreUsuarioASeguir);
+                System.out.println("El usuario " + usuarioSesionActiva.getNombreUsuario() + " sigue al usuario " + nombreUsuarioASeguir);
+                return;
             }
             else{
                 System.out.println("El usuario " + usuarioSesionActiva.getNombreUsuario() + " no se puede seguir a si mismo");
@@ -151,6 +152,25 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
         }
         else{
             System.out.println("no es posible realizar la operacion, el usuario a seguir no se encuentra en la red social o no se ha iniciado sesion");
+        }
+    }
+
+    /**
+     * SHARE COMPARTIDO EN EL MURO DEL USUARIO CON SESION ACTIVA
+     * @param idPost
+     * @return void
+     */
+    public void share(int idPost){
+        if(existePublicacion(idPost) && existeUsuarioSesionActiva()){
+            Date fechaDelShare = new Date();
+            usuarioSesionActiva.getFechaPublicacionCompartidaPorElUsuario().add(fechaDelShare);
+            usuarioSesionActiva.getPublicacionesCompartidasPorElUsuario().add(getPublicacionPorId(idPost));
+            System.out.println("El usuario "+ usuarioSesionActiva.getNombreUsuario() +" ha compartido la publicacion con id "+ idPost);
+
+        }
+        else{
+            System.out.println("no se ha podido compartir la publicacion, verifique que la publicacion exista y/o el usuario ha iniciado sesion");
+
         }
     }
     /**
@@ -204,6 +224,22 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
         return false;
     }
 
+    /**
+     * APLICACION DE SOBRECARGA EN EL METODO existePublicacion
+     * verifica la existencia de una publicacion en social network a partir de una ID
+     * @param idPost
+     * @return boolean
+     */
+    public boolean existePublicacion(int idPost){
+        for(Publicacion publicacionActual: publicacionesRedSocial){
+            if(publicacionActual.getId() == idPost){
+                return true;
+            }
+        }
+        return false;
+
+    }
+
     public List<Usuario> getUsuariosRedSocial() {
         return usuariosRedSocial;
     }
@@ -245,7 +281,21 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
     }
 
     /**
-     * verificar existencia de un usuario logeado en socialnetwork +  obtener dicho usuario
+     * obtener una publicacion de la red social a partir de un id
+     * @param idPost
+     * @return publicacion
+     */
+    public Publicacion getPublicacionPorId(int idPost){
+        for(Publicacion publicacionActual: this.publicacionesRedSocial){
+            if(publicacionActual.getId() == idPost){
+                return publicacionActual;
+            }
+        }
+        return null;
+    }
+    /**
+     * verificar existencia de un usuario logeado en socialnetwork + actualiza el atributo usuarioSesionActiva
+     * con el usuario que actualmente esta logeado
      * @return boolean
      */
     public boolean existeUsuarioSesionActiva (){
