@@ -10,8 +10,10 @@ import java.util.List;
         private String nombreUsuario;
         private String contrasegna;
         private List<Publicacion> publicacionesRealizadas;
-        private List<Publicacion> publicacionesDirigidasAlUsuario; //considera tanto las publicaciones que se le envian
-        //como los share hacia el usuario
+        private List<Publicacion> publicacionesDirigidasAlUsuario;
+        private List<Publicacion> publicacionesCompartidasPorElUsuario;
+        private List<Publicacion> fechaPublicacionCompartidaPorElUsuario;
+
         private List<String> usuariosQueSigue; //lista de strings que contiene los nombres de los usuarios que sigue
         private boolean sesionActiva = false;
 
@@ -77,6 +79,13 @@ import java.util.List;
         }
 
 
+        public List<Publicacion> getPublicacionesCompartidasPorElUsuario() {
+            return publicacionesCompartidasPorElUsuario;
+        }
+
+        public List<Publicacion> getFechaPublicacionCompartidaPorElUsuario() {
+            return fechaPublicacionCompartidaPorElUsuario;
+        }
     }
 
 
