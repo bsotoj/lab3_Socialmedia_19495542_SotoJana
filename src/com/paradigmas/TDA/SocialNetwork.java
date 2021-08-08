@@ -117,14 +117,15 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
      * @param contenido
      * @param listaUsuariosPublicacionDirigida
      */
-    public void post(String tipoPublicacion, String contenido, List<Usuario> listaUsuariosPublicacionDirigida){
+    public void post(String tipoPublicacion, String contenido, List<String> listaUsuariosPublicacionDirigida){
         if((!existePublicacion(publicacionesRedSocial,tipoPublicacion,contenido)) && existeUsuarioSesionActiva() && usuariosExistenEnRedSocial(listaUsuariosPublicacionDirigida)){
             Date fechaPost = new Date();
             Publicacion nuevaPublicacion = new Publicacion(contenido,tipoPublicacion,usuarioSesionActiva,fechaPost);
             this.publicacionesRedSocial.add(nuevaPublicacion);
             usuarioSesionActiva.getPublicacionesRealizadas().add(nuevaPublicacion);
-            for(Usuario usuario : listaUsuariosPublicacionDirigida){
-                usuario.getPublicacionesDirigidasAlUsuario().add(nuevaPublicacion);
+            //public Usuario getUsuarioPorNombre(String nombreUsuarioBuscado){
+            for(String usuarioActual : listaUsuariosPublicacionDirigida){
+                getUsuarioPorNombre(usuarioActual).getPublicacionesDirigidasAlUsuario().add(nuevaPublicacion);
             }
             System.out.println("La publicacion ha sido posteada en el muro de los usuarios con exito");
             return;
@@ -157,10 +158,10 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
      * @param usuariosAVerificar
      * @return boolean
      */
-    public boolean usuariosExistenEnRedSocial(List<Usuario> usuariosAVerificar){
+    public boolean usuariosExistenEnRedSocial(List<String> usuariosAVerificar){
         boolean respuesta = false;
-        for(Usuario usuarioActual: usuariosAVerificar){
-            respuesta = usuariosRedSocial.contains(usuarioActual);
+        for(String usuarioActual: usuariosAVerificar){
+            respuesta = existeUsuario(usuariosRedSocial,usuarioActual);
         }
         return respuesta;
     }
@@ -227,6 +228,20 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
         }
 
         return -1;
+    }
+
+    /**
+     * obtener a un usuario de la red social por nombre
+     * @param nombreUsuarioBuscado
+     * @return usuario
+     */
+    public Usuario getUsuarioPorNombre(String nombreUsuarioBuscado){
+        for(Usuario usuarioActual: this.usuariosRedSocial){
+            if(usuarioActual.getNombreUsuario() == nombreUsuarioBuscado){
+                return usuarioActual;
+            }
+        }
+        return null;
     }
 
     /**
