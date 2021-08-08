@@ -1,6 +1,7 @@
 package com.paradigmas.TDA;
 
 
+import java.security.spec.RSAOtherPrimeInfo;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -165,13 +166,47 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
             Date fechaDelShare = new Date();
             usuarioSesionActiva.getFechaPublicacionCompartidaPorElUsuario().add(fechaDelShare);
             usuarioSesionActiva.getPublicacionesCompartidasPorElUsuario().add(getPublicacionPorId(idPost));
-            System.out.println("El usuario "+ usuarioSesionActiva.getNombreUsuario() +" ha compartido la publicacion con id "+ idPost);
+            System.out.println("El usuario "+ usuarioSesionActiva.getNombreUsuario() +" ha compartido la publicacion con id "+ idPost + " en su propio muro");
 
         }
         else{
-            System.out.println("no se ha podido compartir la publicacion, verifique que la publicacion exista y/o el usuario ha iniciado sesion");
+            System.out.println("No se ha podido compartir la publicacion, verifique que la publicacion exista y/o el usuario ha iniciado sesion");
 
         }
+    }
+
+    /**
+     * SOBRECARGA DEL METODO share
+     * SHARE COMPARTIDO EN EL MURO DE UNA LISTA DE USUARIOS
+     * @param idPost
+     * @param listaUsuariosConQuienCompartir
+     * @return void
+     */
+   // public boolean sonLosUsuariosAmigosDelUsuarioSesionActiva (List<String> usuariosAVerificar){
+   // public Usuario getUsuarioPorNombre(String nombreUsuarioBuscado){
+
+    public void share(int idPost, List<String> listaUsuariosConQuienCompartir){
+        if(existePublicacion(idPost) && existeUsuarioSesionActiva()){
+            if(sonLosUsuariosAmigosDelUsuarioSesionActiva(listaUsuariosConQuienCompartir)){
+                Date fechaDelShare = new Date();
+                usuarioSesionActiva.getFechaPublicacionCompartidaPorElUsuario().add(fechaDelShare);
+                usuarioSesionActiva.getPublicacionesCompartidasPorElUsuario().add(getPublicacionPorId(idPost));
+                for(String usuarioActual: listaUsuariosConQuienCompartir){
+                    getUsuarioPorNombre(usuarioActual).getPublicacionesDirigidasAlUsuario().add(getPublicacionPorId(idPost));
+
+                }
+                System.out.println("El usuario " +usuarioSesionActiva.getNombreUsuario() + " ha compartido la publicacion con id " + idPost + " en el muro de sus contactos" );
+
+            }
+            else{
+                System.out.println("Los usuarios seleccionados no se encuentran en la lista de seguidores del usuario con sesion activa");
+            }
+
+        }
+        else{
+            System.out.println("No se ha podido compartir la publicacion, verifique que la publicacion exista y/o el usuario ha iniciado sesion");
+        }
+
     }
     /**
      * verificar la existencia de un grupo de usuarios en la red social
@@ -203,6 +238,20 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
         }
         return false;
 
+    }
+
+    /**
+     * metodo que verifica si una lista de usuarios se encuentra dentro de los contacto del usuario con sesion activa
+     * @param usuariosAVerificar
+     * @return boolean
+     */
+
+    public boolean sonLosUsuariosAmigosDelUsuarioSesionActiva (List<String> usuariosAVerificar){
+        boolean respuesta = false;
+        for(String usuarioActual: usuariosAVerificar){
+            respuesta = usuarioSesionActiva.getUsuariosQueSigue().contains(usuarioActual);
+        }
+        return respuesta;
     }
 
     /**
