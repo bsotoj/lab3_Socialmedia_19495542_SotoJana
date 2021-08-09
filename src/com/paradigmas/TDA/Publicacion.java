@@ -79,7 +79,7 @@ public class Publicacion {
                 '\n' +
                 "Tipo de contenido: " + tipoPublicacion +
                 '\n' +
-                "Contenido: " + contenido;
+                "Contenido: " + contenido + '\n';
 
     }
 

@@ -209,6 +209,41 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
         }
 
     }
+
+
+    public void socialNetworkToString(){
+        representacionRedSocial = "";
+        if(existeUsuarioSesionActiva()){
+            representacionRedSocial = usuarioSesionActiva.userSesionActivaToString();
+        }
+        else{
+            representacionRedSocial = representacionRedSocial + "Representacion de la red social: " + nombreRedSocial + '\n'
+                    + "Usuarios de la red social: " + '\n';
+            if(usuariosRedSocial == null){
+                representacionRedSocial = representacionRedSocial + '\n';
+            }
+            else{
+                for(Usuario usuarioActual: usuariosRedSocial){
+                    representacionRedSocial = representacionRedSocial + usuarioActual.usuarioToString() + '\n';
+                }
+            }
+            representacionRedSocial = representacionRedSocial + "Publicaciones de la red social: " + '\n';
+
+            if(publicacionesRedSocial == null){
+                representacionRedSocial = representacionRedSocial + '\n';
+            }
+            else{
+                for(Publicacion publicacionActual: publicacionesRedSocial){
+                    representacionRedSocial = representacionRedSocial + publicacionActual.publicacionToString() + '\n';
+                }
+            }
+
+        }
+        printSocialNetwork();
+    }
+    public void printSocialNetwork(){
+        System.out.println(representacionRedSocial);
+    }
     /**
      * verificar la existencia de un grupo de usuarios en la red social
      * @param usuariosAVerificar
