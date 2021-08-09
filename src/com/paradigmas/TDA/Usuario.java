@@ -95,9 +95,8 @@ import java.util.List;
         public Date getFechaCreacionCuenta() {
             return fechaCreacionCuenta;
         }
-
-
-        public String userToString() {
+        
+        public String userSesionActivaToString() {
             String usuarioAString = "";
             int contadorPosicion = 0;
             usuarioAString = usuarioAString +
