@@ -95,7 +95,31 @@ import java.util.List;
         public Date getFechaCreacionCuenta() {
             return fechaCreacionCuenta;
         }
-        
+
+
+        public String usuarioToString(){
+            String usuarioAString = "";
+            usuarioAString = usuarioAString +
+                    "Nombre usuario: " + nombreUsuario +
+                    '\n' +
+                    "ID = " + id +
+                    '\n' +
+                    "Sesion activa: " + sesionActiva +
+                    '\n' +
+                    "Fecha creacion de cuenta: " + fechaCreacionCuenta +
+                    '\n' +
+                    "Lista de personas que sigue el usuario: " + '\n';
+            if(usuariosQueSigue == null){
+                usuarioAString = usuarioAString + '\n';
+            }
+            else {
+                for (String usuarioActual : usuariosQueSigue) {
+                    usuarioAString = usuarioAString + usuarioActual + '\n';
+                }
+            }
+            return usuarioAString;
+
+        }
         public String userSesionActivaToString() {
             String usuarioAString = "";
             int contadorPosicion = 0;
