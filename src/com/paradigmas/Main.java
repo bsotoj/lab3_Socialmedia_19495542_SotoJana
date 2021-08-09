@@ -42,6 +42,7 @@ public class Main {
         sn1.share(2);
         sn1.share(1);
         sn1.share(2,listaUsuarios);
+        System.out.println(sn1.getUsuariosRedSocial().get(0).userToString());
        //System.out.println( sn1.getUsuariosRedSocial().get(0).getPublicacionesCompartidasPorElUsuario().get(0).getId());
         //System.out.println( sn1.getUsuariosRedSocial().get(0).getPublicacionesCompartidasPorElUsuario().get(0).getTipoPublicacion());
         //System.out.println(sn1.getUsuariosRedSocial().get(0).getPublicacionesCompartidasPorElUsuario().get(0).getContenido());

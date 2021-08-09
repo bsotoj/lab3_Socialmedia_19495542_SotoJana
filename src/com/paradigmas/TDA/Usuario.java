@@ -21,17 +21,17 @@ import java.util.List;
 
         /**
          * constructor del usuario
+         *
          * @param nombreUsuario
-         * @param contrasegna
-         * return usuario
+         * @param contrasegna   return usuario
          */
-        public Usuario( String nombreUsuario, String contrasegna) {
+        public Usuario(String nombreUsuario, String contrasegna) {
             setId(++contadorIdActual);
             this.nombreUsuario = nombreUsuario;
             this.contrasegna = contrasegna;
             this.fechaCreacionCuenta = new Date();
             this.publicacionesRealizadas = new ArrayList<>();
-            this.publicacionesDirigidasAlUsuario= new ArrayList<>();
+            this.publicacionesDirigidasAlUsuario = new ArrayList<>();
             this.usuariosQueSigue = new ArrayList<>();
             this.publicacionesCompartidasPorElUsuario = new ArrayList<>();
             this.fechaPublicacionCompartidaPorElUsuario = new ArrayList<>();
@@ -96,32 +96,12 @@ import java.util.List;
             return fechaCreacionCuenta;
         }
 
-        @Override
-        public String toString() {
 
-            return "Usuario{" +
-                    "id=" + id +
-                    ", nombreUsuario='" + nombreUsuario + '\'' +
-                    ", contrasegna='" + contrasegna + '\'' +
-                    ", fechaCreacionCuenta=" + fechaCreacionCuenta +
-
-
-
-
-                    ", publicacionesRealizadas=" + publicacionesRealizadas +
-                    ", publicacionesDirigidasAlUsuario=" + publicacionesDirigidasAlUsuario +
-                    ", publicacionesCompartidasPorElUsuario=" + publicacionesCompartidasPorElUsuario +
-                    ", fechaPublicacionCompartidaPorElUsuario=" + fechaPublicacionCompartidaPorElUsuario +
-                    ", usuariosQueSigue=" + usuariosQueSigue +
-                    ", sesionActiva=" + sesionActiva +
-                    '}';
-        }
-
-        public String userToString(){
+        public String userToString() {
             String usuarioAString = "";
             int contadorPosicion = 0;
             usuarioAString = usuarioAString +
-                    "Nombre usuario: " +
+                    "Nombre usuario: " + nombreUsuario +
                     '\n' +
                     "ID = " + id +
                     '\n' +
@@ -129,33 +109,53 @@ import java.util.List;
                     '\n' +
                     "Fecha creacion de cuenta: " + fechaCreacionCuenta +
                     '\n' +
-                    "Publicaciones realizadas: ";
-                    for(Publicacion publicacionRealizadaActual: publicacionesRealizadas){
-                        usuarioAString = usuarioAString + publicacionRealizadaActual.publicacionToString() + '\n';
-                    }
+                    "Publicaciones realizadas: " + '\n';
 
-                    usuarioAString+= "Publicaciones dirigidas al usuario: " + '\n';
+            if (publicacionesRealizadas == null) {
+                usuarioAString = usuarioAString + '\n';
+            } else {
 
-                    for(Publicacion publicacionDirigidaAlUsuarioActual: publicacionesDirigidasAlUsuario){
-                        usuarioAString = usuarioAString + publicacionDirigidaAlUsuarioActual.publicacionToString() + '\n';
-                    }
+                for (Publicacion publicacionRealizadaActual : publicacionesRealizadas) {
+                    usuarioAString = usuarioAString + publicacionRealizadaActual.publicacionToString() + '\n';
+                }
 
-                    usuarioAString+= "Publicaciones compartidas por el usuario: " + '\n';
-
-                    while(contadorPosicion < publicacionesCompartidasPorElUsuario.size()){
-                        usuarioAString = usuarioAString + "Fecha en la que se comparte publicacion: " + fechaPublicacionCompartidaPorElUsuario.get(contadorPosicion) +
-                                '\n' + publicacionesCompartidasPorElUsuario.get(contadorPosicion).publicacionToString() + '\n';
-                        contadorPosicion+=1;
-                    }
-
-                    usuarioAString+= "Usuarios que sigue: " + '\n';
-
-                    for(String nombreUsuarioActual: usuariosQueSigue){
-                        usuarioAString = usuarioAString + nombreUsuarioActual + '\n';
-                    }
-                    return usuarioAString;
-                    
             }
-    }
+            usuarioAString += "Publicaciones dirigidas al usuario: " + '\n';
+            if (publicacionesDirigidasAlUsuario == null) {
+                usuarioAString = usuarioAString + '\n';
+            } else {
+                for (Publicacion publicacionDirigidaAlUsuarioActual : publicacionesDirigidasAlUsuario) {
+                    usuarioAString = usuarioAString + publicacionDirigidaAlUsuarioActual.publicacionToString() + '\n';
+                }
 
+            }
+            usuarioAString += "Publicaciones compartidas por el usuario: " + '\n';
+
+            if (publicacionesDirigidasAlUsuario == null) {
+                usuarioAString = usuarioAString + '\n';
+            } else {
+
+                while (contadorPosicion < publicacionesCompartidasPorElUsuario.size()) {
+                    usuarioAString = usuarioAString + "Fecha en la que se comparte publicacion: " + fechaPublicacionCompartidaPorElUsuario.get(contadorPosicion) +
+                            '\n' + publicacionesCompartidasPorElUsuario.get(contadorPosicion).publicacionToString() + '\n';
+                    contadorPosicion += 1;
+                }
+            }
+
+
+            usuarioAString += "Usuarios que sigue: " + '\n';
+
+            if (usuariosQueSigue == null) {
+                usuarioAString = usuarioAString + '\n';
+            } else {
+                for (String nombreUsuarioActual : usuariosQueSigue) {
+                    usuarioAString = usuarioAString + nombreUsuarioActual + '\n';
+                }
+
+            }
+
+            return usuarioAString;
+        }
+
+    }
 
