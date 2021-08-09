@@ -118,16 +118,44 @@ import java.util.List;
         }
 
         public String userToString(){
-            return "Nombre usuario: " +
+            String usuarioAString = "";
+            int contadorPosicion = 0;
+            usuarioAString = usuarioAString +
+                    "Nombre usuario: " +
                     '\n' +
                     "ID = " + id +
                     '\n' +
+                    "Sesion activa: " + sesionActiva +
+                    '\n' +
                     "Fecha creacion de cuenta: " + fechaCreacionCuenta +
                     '\n' +
+                    "Publicaciones realizadas: ";
+                    for(Publicacion publicacionRealizadaActual: publicacionesRealizadas){
+                        usuarioAString = usuarioAString + publicacionRealizadaActual.publicacionToString() + '\n';
+                    }
 
+                    usuarioAString+= "Publicaciones dirigidas al usuario: " + '\n';
 
+                    for(Publicacion publicacionDirigidaAlUsuarioActual: publicacionesDirigidasAlUsuario){
+                        usuarioAString = usuarioAString + publicacionDirigidaAlUsuarioActual.publicacionToString() + '\n';
+                    }
 
-        }
+                    usuarioAString+= "Publicaciones compartidas por el usuario: " + '\n';
+
+                    while(contadorPosicion < publicacionesCompartidasPorElUsuario.size()){
+                        usuarioAString = usuarioAString + "Fecha en la que se comparte publicacion: " + fechaPublicacionCompartidaPorElUsuario.get(contadorPosicion) +
+                                '\n' + publicacionesCompartidasPorElUsuario.get(contadorPosicion).publicacionToString() + '\n';
+                        contadorPosicion+=1;
+                    }
+
+                    usuarioAString+= "Usuarios que sigue: " + '\n';
+
+                    for(String nombreUsuarioActual: usuariosQueSigue){
+                        usuarioAString = usuarioAString + nombreUsuarioActual + '\n';
+                    }
+                    return usuarioAString;
+                    
+            }
     }
 
 

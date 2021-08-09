@@ -83,11 +83,11 @@ public class Publicacion {
 
     }
 
-    public String listaPublicacionesToString(List<Publicacion> listaPublicaciones){
-        String publicacionesToString = "";
-        for(Publicacion publicacionActual : listaPublicaciones){
-            publicacionesToString = publicacionesToString + publicacionActual.publicacionToString() + '\n';
-        }
-        return publicacionesToString; 
-    }
+   // public String listaPublicacionesToString(List<Publicacion> listaPublicaciones){
+     //   String publicacionesToString = "";
+       // for(Publicacion publicacionActual : listaPublicaciones){
+         //   publicacionesToString = publicacionesToString + publicacionActual.publicacionToString() + '\n';
+       // }
+       // return publicacionesToString;
+    //}
 }
