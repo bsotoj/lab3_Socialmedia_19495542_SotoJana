@@ -10,8 +10,9 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
     private List<Usuario> usuariosRedSocial;
     private List<Publicacion> publicacionesRedSocial;
     private String nombreRedSocial;
-    private Usuario usuarioSesionActiva; // cada vez que se use el metodo existeUsuarioSesionActiva este atributo se sobreescribe
+    private Usuario usuarioSesionActiva; // cada vez que se use el metodo existeUsuarioSesionActiva este atributo sobreescribe
                                         // la direccion de memoria con la direccion del nuevo usuario con sesion iniciada
+    private String representacionRedSocial;
 
     /**
      * constructor SocialNetwork

@@ -69,4 +69,21 @@ public class Publicacion {
     public void setFechaPublicacion(Date fechaPublicacion) {
         this.fechaPublicacion = fechaPublicacion;
     }
+
+    public String publicacionToString(){
+        return "Publicacion: " + id +
+                '\n' +
+                "Autor: " + autor.getNombreUsuario() +
+                '\n' +
+                "Fecha de publicacion: " + fechaPublicacion +
+                '\n' +
+                "Tipo de contenido: " + tipoPublicacion +
+                '\n' +
+                "Contenido: " + contenido;
+
+    }
+
+    public String listaPublicacionesToString(List<Publicacion> listaPublicaciones){
+        
+    }
 }

@@ -10,6 +10,7 @@ import java.util.List;
         private int id;
         private String nombreUsuario;
         private String contrasegna;
+        private Date fechaCreacionCuenta;
         private List<Publicacion> publicacionesRealizadas;
         private List<Publicacion> publicacionesDirigidasAlUsuario;
         private List<Publicacion> publicacionesCompartidasPorElUsuario;
@@ -28,6 +29,7 @@ import java.util.List;
             setId(++contadorIdActual);
             this.nombreUsuario = nombreUsuario;
             this.contrasegna = contrasegna;
+            this.fechaCreacionCuenta = new Date();
             this.publicacionesRealizadas = new ArrayList<>();
             this.publicacionesDirigidasAlUsuario= new ArrayList<>();
             this.usuariosQueSigue = new ArrayList<>();
@@ -88,6 +90,43 @@ import java.util.List;
 
         public List<Date> getFechaPublicacionCompartidaPorElUsuario() {
             return fechaPublicacionCompartidaPorElUsuario;
+        }
+
+        public Date getFechaCreacionCuenta() {
+            return fechaCreacionCuenta;
+        }
+
+        @Override
+        public String toString() {
+
+            return "Usuario{" +
+                    "id=" + id +
+                    ", nombreUsuario='" + nombreUsuario + '\'' +
+                    ", contrasegna='" + contrasegna + '\'' +
+                    ", fechaCreacionCuenta=" + fechaCreacionCuenta +
+
+
+
+
+                    ", publicacionesRealizadas=" + publicacionesRealizadas +
+                    ", publicacionesDirigidasAlUsuario=" + publicacionesDirigidasAlUsuario +
+                    ", publicacionesCompartidasPorElUsuario=" + publicacionesCompartidasPorElUsuario +
+                    ", fechaPublicacionCompartidaPorElUsuario=" + fechaPublicacionCompartidaPorElUsuario +
+                    ", usuariosQueSigue=" + usuariosQueSigue +
+                    ", sesionActiva=" + sesionActiva +
+                    '}';
+        }
+
+        public String userToString(){
+            return "Nombre usuario: " +
+                    '\n' +
+                    "ID = " + id +
+                    '\n' +
+                    "Fecha creacion de cuenta: " + fechaCreacionCuenta +
+                    '\n' +
+
+
+
         }
     }
 
