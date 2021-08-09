@@ -1,7 +1,7 @@
 package com.paradigmas.TDA;
 
 
-import java.security.spec.RSAOtherPrimeInfo;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -210,7 +210,10 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
 
     }
 
-
+    /**
+     * representacion de una red social/usuario con sesion activa a string
+     * @return void
+     */
     public void socialNetworkToString(){
         representacionRedSocial = "";
         if(existeUsuarioSesionActiva()){
@@ -241,6 +244,11 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
         }
         printSocialNetwork();
     }
+
+    /**
+     * imprimir por pantalla el string obtenido de socialNetworkToString
+     * @return void
+     */
     public void printSocialNetwork(){
         System.out.println(representacionRedSocial);
     }
@@ -393,24 +401,6 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
         return false;
 
     }
-
-
-    // ESTOY TESTEANDO ALGUNAS COSAS
-    public String imprimirUsuarios(){
-        String cadena = new String();
-        for(Usuario usuarioActual: this.usuariosRedSocial){
-            cadena = cadena + usuarioActual.getNombreUsuario() + " estado actual de sesion " + usuarioActual.isSesionActiva() + '\n';
-        }
-        return cadena;
-    }
-    @Override
-    public String toString() {
-        return "SocialNetwork{" +
-                "usuariosRedSocial= " + imprimirUsuarios() +
-                ", nombreRedSocial='" + nombreRedSocial + '\'' +
-                '}';
-    }
-
 
 }
 

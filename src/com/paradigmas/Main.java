@@ -10,49 +10,27 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        SocialNetwork sn1 = new SocialNetwork("manc ave");
+        SocialNetwork sn1 = new SocialNetwork("Manc Ave");
         sn1.register("usuario1","pass1");
-        sn1.register("usuario2", "pass2");
+        sn1.register("usuario2","pass2");
         sn1.register("usuario3","pass3");
         sn1.register("usuario4","pass4");
-        //sn1 = [usuario1,usuario2,usuario3,usuario4]
-        //Usuario usuario1 = sn1.getUsuariosRedSocial().get(0);
-        //Usuario usuario2 = sn1.getUsuariosRedSocial().get(1);
-        //Usuario usuario3 = sn1.getUsuariosRedSocial().get(2);
-        //Usuario usuario4 = sn1.getUsuariosRedSocial().get(3);
-        //listaDeUsuarios = [usuario1,usuario3,usuario4]
-        //List <Usuario> listaDeUsuarios = new ArrayList<>();
-        //listaDeUsuarios.add(usuario1);
-        //listaDeUsuarios.add(usuario3);
-        //listaDeUsuarios.add(usuario4);
-        sn1.login("usuario1","pass1");
-        List<String> listaUsuarios= new ArrayList<>();
+        sn1.register("usuario5","pass5");
+        sn1.login("usuario3","pass3");
+        List<String> listaUsuarios = new ArrayList<>();
         listaUsuarios.add("usuario1");
-        listaUsuarios.add("usuario2");
+        listaUsuarios.add("usuario5");
         listaUsuarios.add("usuario4");
         sn1.post("video","mi primer post");
-        sn1.post("foto","mi primera foto dirigida a usuarios",listaUsuarios);
-        //System.out.println("contenido de la publicacion: " + sn1.getUsuariosRedSocial().get(0).getPublicacionesDirigidasAlUsuario().get(0).getContenido() + " autor: " + sn1.getUsuariosRedSocial().get(0).getPublicacionesDirigidasAlUsuario().get(0).getAutor().getNombreUsuario() );
-        //System.out.println("contenido de la publicacion: " + sn1.getUsuariosRedSocial().get(2).getPublicacionesDirigidasAlUsuario().get(0).getContenido()+ " autor: " + sn1.getUsuariosRedSocial().get(2).getPublicacionesDirigidasAlUsuario().get(0).getAutor().getNombreUsuario());
-        //System.out.println("contenido de la publicacion: " + sn1.getUsuariosRedSocial().get(3).getPublicacionesDirigidasAlUsuario().get(0).getContenido()+ " autor: " + sn1.getUsuariosRedSocial().get(3).getPublicacionesDirigidasAlUsuario().get(0).getAutor().getNombreUsuario());
-        // Usuario newUsuario = sn1.getUsuariosRedSocial().get(0);
+        sn1.post("foto", "mi primera foto dirigida a usuarios",listaUsuarios);
         sn1.follow("usuario4");
-        sn1.follow("usuario2");
-        //System.out.println("usuario: "+sn1.getUsuariosRedSocial().get(0).getNombreUsuario()+" sigue a " +sn1.getUsuariosRedSocial().get(0).getUsuariosQueSigue().get(0));
-        sn1.share(2);
-        sn1.share(1);
-        sn1.share(2,listaUsuarios);
-       //System.out.println( sn1.getUsuariosRedSocial().get(0).getPublicacionesCompartidasPorElUsuario().get(0).getId());
-        //System.out.println( sn1.getUsuariosRedSocial().get(0).getPublicacionesCompartidasPorElUsuario().get(0).getTipoPublicacion());
-        //System.out.println(sn1.getUsuariosRedSocial().get(0).getPublicacionesCompartidasPorElUsuario().get(0).getContenido());
         sn1.logout();
-        sn1.socialNetworkToString();
+        sn1.login("usuario4","pass4");
+        sn1.follow("usuario3");
 
-       // System.out.println(sn1.getUsuariosRedSocial().contains(newUsuario));
-        //System.out.println(sn1.toString());
-        // System.out.println("ahora es con logout");
-        // sn1.logout();
-        // System.out.println(sn1.toString());
+        //Se usa como referencia la base del metodo mostrar menu visto en clases del profesor Gonzalo Martinez
+
+
 
     }
 }

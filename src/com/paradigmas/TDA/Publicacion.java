@@ -70,6 +70,10 @@ public class Publicacion {
         this.fechaPublicacion = fechaPublicacion;
     }
 
+    /**
+     * conversion de un objetvo tipo Publicacion a string
+     * @return String
+     */
     public String publicacionToString(){
         return "Publicacion: " + id +
                 '\n' +
@@ -83,11 +87,5 @@ public class Publicacion {
 
     }
 
-   // public String listaPublicacionesToString(List<Publicacion> listaPublicaciones){
-     //   String publicacionesToString = "";
-       // for(Publicacion publicacionActual : listaPublicaciones){
-         //   publicacionesToString = publicacionesToString + publicacionActual.publicacionToString() + '\n';
-       // }
-       // return publicacionesToString;
-    //}
+
 }

@@ -96,7 +96,10 @@ import java.util.List;
             return fechaCreacionCuenta;
         }
 
-
+        /**
+         * representacion de un usuario a String
+         * @return String
+         */
         public String usuarioToString(){
             String usuarioAString = "";
             usuarioAString = usuarioAString +
@@ -120,6 +123,11 @@ import java.util.List;
             return usuarioAString;
 
         }
+
+        /**
+         * representacion de un usuario con sesion activa en la red social a string
+         * @return String
+         */
         public String userSesionActivaToString() {
             String usuarioAString = "";
             int contadorPosicion = 0;
