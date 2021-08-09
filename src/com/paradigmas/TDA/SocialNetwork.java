@@ -402,6 +402,9 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
 
     }
 
+    public String getNombreRedSocial() {
+        return nombreRedSocial;
+    }
 }
 
 
