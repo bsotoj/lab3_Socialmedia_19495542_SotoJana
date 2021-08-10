@@ -74,42 +74,66 @@ public class Main extends MenuInteractivo {
                                     String tipoPublicacion1 = input.nextLine();
                                     System.out.println("Cual es el contenido de la publicacion? ");
                                     String contenido1 = input.nextLine();
-                                    List<String> usuarios = new ArrayList<>();
-                                    String usuario;
-                                    Scanner continuar = new Scanner(System.in); //se agrega un scanner aparte
+                                    List<String> usuarios = new ArrayList<>(); //almacena a los usuarios ingresados por consola
+                                    String usuario; //variable que ira almacenando el usuario ingresado por consola
+                                    Scanner continuar = new Scanner(System.in); //se agrega un scanner aparte para el numero ingresado por consola
                                     System.out.println("Ingresa uno a uno a los usuarios a los que quieres enviar la publicacion: ");
                                     int continuarAgregandoUsuarios = 0;
                                     while(continuarAgregandoUsuarios == 0 ){
                                         System.out.println("Nombre usuario a enviar publicacion ");
                                         usuario = input.nextLine();
                                         usuarios.add(usuario);
-                                        System.out.println("Si quieres seguir agregando usuario pulsa 0, si quieres enviar la publicacion pulsa 1");
+                                        System.out.println("Si quieres seguir agregando usuarios pulsa 0, si quieres enviar la publicacion pulsa 1");
                                         continuarAgregandoUsuarios = continuar.nextInt();
                                     }
                                     sn1.post(tipoPublicacion1,contenido1,usuarios);
                                     break;
 
-                                case 3:
-                                    System.out.println("follow");
+                                case 3://follow
+                                    System.out.println("Ingresa el nombre del usuario a seguir ");
+                                    String usuarioASeguir = input.nextLine();
+                                    sn1.follow(usuarioASeguir);
                                     break;
 
-                                case 4:
+                                case 4://share de un post en el propio muro
                                     System.out.println("share");
+                                    System.out.println("Cual es la ID de la publicacion a compartir?");
+                                    int id = input.nextInt();
+                                    sn1.share(id);
                                     break;
 
-                                case 5:
+                                case 5://share de un post a la lista de usuarios que el usuario con sesion activa sigue
                                     System.out.println("share2");
+                                    System.out.println("Cual es la ID de la publicacion a compartir? ");
+                                    int idPost = input.nextInt();
+                                    List<String> usuariosACompartirPost = new ArrayList<>();
+                                    String usuarioActual;
+                                    int contador = 0;
+                                    System.out.println("Ingresa uno a uno a los contactos a los que quieres compartir la publicacion: ");
+                                    Scanner continuarAgregando = new Scanner(System.in);
+                                    while(contador == 0){
+                                        System.out.println("Nombre de usuario a compartir publicacion ");
+                                        usuarioActual = input.nextLine();
+                                        usuariosACompartirPost.add(usuarioActual);
+                                        System.out.println("Si quieres seguir agregando usuarios pulsa 0, si quieres enviar la publicacion pulsa 1");
+                                        contador = continuarAgregando.nextInt();
+                                    }
+                                    sn1.share(idPost,usuariosACompartirPost);
                                     break;
-                                case 6:
-                                    System.out.println("ToString");
+
+                                case 6://socialnetworktostring cuando el usuario esta logeado
+                                    System.out.println("Actividad del usuario " + sn1.getUsuarioSesionActiva().getNombreUsuario() +" en la red social");
+                                    sn1.socialNetworkToString();
                                     break;
-                                case 7:
+
+                                case 7://Logout
                                     System.out.println("Has cerrado la sesion");
                                     sn1.logout();
                                     break;
 
-                                case 8:
+                                case 8://finalizar el programa
                                     exit(0); //salir del programa
+
                                 default:
                                     System.out.println("Ingrese una opcion correcta");
                             }

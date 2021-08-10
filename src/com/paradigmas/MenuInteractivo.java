@@ -26,13 +26,13 @@ public class MenuInteractivo {
         int opcionSeleccionada = 0;
         Scanner opcionIngresadaPorTeclado = new Scanner(System.in);
         System.out.println("Hola " + nombreUsuarioLogeado);
-        System.out.println("-----------------");
+        System.out.println("\n");
         System.out.println("Que accion deseas hacer?: ");
         System.out.println("1.Publicacion en el muro del usuario");
         System.out.println("2.Publicacion en el muro de otros usuarios");
-        System.out.println("3.Compartir una publicacion en el propio muro");
-        System.out.println("4.Compartir una publicacion en el muro de otros contactos");
-        System.out.println("5.Seguir a un usuario");
+        System.out.println("3.Seguir a un usuario");
+        System.out.println("4.Compartir una publicacion en el propio muro");
+        System.out.println("5.Compartir una publicacion en el muro de otros contactos");
         System.out.println("6.Visualizar tus acciones en la red social");
         System.out.println("7.Cerrar sesion");
         System.out.println("8.Salir del programa");
