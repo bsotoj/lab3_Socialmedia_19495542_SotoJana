@@ -1,4 +1,4 @@
-package com.paradigmas.TDA;
+
 
 public interface RedSocial {
     void post(String tipoPublicacion,String contenido);
