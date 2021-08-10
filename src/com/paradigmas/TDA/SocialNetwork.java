@@ -34,16 +34,18 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
      * @param contrasegna
      * return void
      */
+
     public void register(String nombreUsuario, String contrasegna){
-        if(!existeUsuario(usuariosRedSocial, nombreUsuario)){
+        if(!existeUsuarioRedSocial(usuariosRedSocial, nombreUsuario,contrasegna)){
             Usuario nuevoUsuario = new Usuario(nombreUsuario,contrasegna);
             this.usuariosRedSocial.add(nuevoUsuario);
             System.out.println("Se ha registrado al usuario " + nombreUsuario + " con exito");
             return;
 
         }
-        System.out.println("Este usuario ya existe");
-
+        else{
+            System.out.println("Este usuario ya existe");
+        }
 
     }
 
@@ -59,7 +61,7 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
         int posicionUsuarioBuscado;
         if(!(this.usuariosRedSocial.size() == 0)){
             posicionUsuarioBuscado = getUsuarioPorPosicion(this.usuariosRedSocial, nombreUsuario);
-            if(usuariosRedSocial.get(posicionUsuarioBuscado).getContrasegna() == constrasegna) {
+            if(usuariosRedSocial.get(posicionUsuarioBuscado).getContrasegna().equals(constrasegna)) {
                 usuariosRedSocial.get(posicionUsuarioBuscado).setSesionActiva(true);
                 System.out.println("El usuario " + nombreUsuario + " ha iniciado sesion");
                 return;
@@ -143,7 +145,7 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
      */
     public void follow(String nombreUsuarioASeguir) {
         if((existeUsuario(usuariosRedSocial, nombreUsuarioASeguir)) && existeUsuarioSesionActiva()){
-            if(!(nombreUsuarioASeguir == usuarioSesionActiva.getNombreUsuario())){ //un usuario no se puede seguir a si mismo
+            if(!(usuarioSesionActiva.getNombreUsuario().equals(nombreUsuarioASeguir))){ //un usuario no se puede seguir a si mismo
                 usuarioSesionActiva.getUsuariosQueSigue().add(nombreUsuarioASeguir);
                 System.out.println("El usuario " + usuarioSesionActiva.getNombreUsuario() + " sigue al usuario " + nombreUsuarioASeguir);
                 return;
@@ -276,13 +278,34 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
             return false;
         }
         for(Usuario usuarioActual: listaUsuarios){
-            if(usuarioActual.getNombreUsuario() == nombreUsuario){
+            if(usuarioActual.getNombreUsuario().equals(nombreUsuario)){
                 return true;
             }
         }
         return false;
 
     }
+
+    /**
+     * verifica la existencia de un usuario en la red social para registrarlo
+     * @param listaUsuarios
+     * @param nombreUsuario
+     * @param contrasegna
+     * @return boolean
+     */
+    public boolean existeUsuarioRedSocial(List<Usuario> listaUsuarios, String nombreUsuario, String contrasegna){
+        if(listaUsuarios == null){
+            return false;
+        }
+        for(Usuario usuarioActual: listaUsuarios){
+            if((usuarioActual.getNombreUsuario().equals(nombreUsuario)) && (usuarioActual.getContrasegna().equals(contrasegna))){
+                return true;
+            }
+        }
+        return false;
+
+    }
+
 
     /**
      * metodo que verifica si una lista de usuarios se encuentra dentro de los contacto del usuario con sesion activa
@@ -310,7 +333,7 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
             return false;
         }
         for(Publicacion publicacionActual: listaPublicaciones){
-            if(publicacionActual.getContenido() == contenido && publicacionActual.getTipoPublicacion() == tipoPublicacion ){
+            if(publicacionActual.getContenido().equals(contenido) && publicacionActual.getTipoPublicacion().equals(tipoPublicacion)){
                 return true;
             }
         }
@@ -350,7 +373,7 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
     public int getUsuarioPorPosicion(List<Usuario> usuarios, String usuarioBuscado) {
         int posicion = 0;
         while (posicion < usuarios.size()) {
-            if (usuarioBuscado == usuarios.get(posicion).getNombreUsuario()){
+            if (usuarios.get(posicion).getNombreUsuario().equals(usuarioBuscado)){
                 return posicion;
             }
             posicion+=1;
@@ -366,7 +389,7 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
      */
     public Usuario getUsuarioPorNombre(String nombreUsuarioBuscado){
         for(Usuario usuarioActual: this.usuariosRedSocial){
-            if(usuarioActual.getNombreUsuario() == nombreUsuarioBuscado){
+            if(usuarioActual.getNombreUsuario().equals(nombreUsuarioBuscado)){
                 return usuarioActual;
             }
         }
@@ -404,6 +427,10 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
 
     public String getNombreRedSocial() {
         return nombreRedSocial;
+    }
+
+    public Usuario getUsuarioSesionActiva() {
+        return usuarioSesionActiva;
     }
 }
 
