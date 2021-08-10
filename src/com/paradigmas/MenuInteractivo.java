@@ -6,6 +6,12 @@ import java.util.Scanner;
 
 
 public class MenuInteractivo {
+    /**
+     * desplegar menu inicial para el menu interactivo
+     * @param nombreRedSocial
+     * @return int
+     */
+
     public static int mostrarMenuInicial(String nombreRedSocial){
         int opcionSeleccionada = 0;
         Scanner opcionIngresadaPorTeclado = new Scanner(System.in);
@@ -22,6 +28,11 @@ public class MenuInteractivo {
         return opcionSeleccionada;
     }
 
+    /**
+     * desplegar menu para el usuario que ha iniciado sesion en la red social
+     * @param nombreUsuarioLogeado
+     * @return int
+     */
     public static int mostrarMenuUsuarioIniciado(String nombreUsuarioLogeado){
         int opcionSeleccionada = 0;
         Scanner opcionIngresadaPorTeclado = new Scanner(System.in);
