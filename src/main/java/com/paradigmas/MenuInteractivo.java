@@ -36,7 +36,7 @@ public class MenuInteractivo {
     public static int mostrarMenuUsuarioIniciado(String nombreUsuarioLogeado){
         int opcionSeleccionada = 0;
         Scanner opcionIngresadaPorTeclado = new Scanner(System.in);
-        System.out.println("Hola " + nombreUsuarioLogeado);
+        System.out.println("\n" + "Hola " + nombreUsuarioLogeado + "\n");
         System.out.println("\n");
         System.out.println("Que accion deseas hacer?: ");
         System.out.println("1.Publicacion en el muro del usuario");
