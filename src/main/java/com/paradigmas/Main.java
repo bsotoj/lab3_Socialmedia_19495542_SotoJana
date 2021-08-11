@@ -1,6 +1,6 @@
-package com.paradigmas;
+package main.java.com.paradigmas;
 
-import com.paradigmas.TDA.SocialNetwork;
+import main.java.com.paradigmas.TDA.SocialNetwork;
 
 
 import java.util.ArrayList;

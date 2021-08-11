@@ -1,7 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'application'
 
-mainClassName = 'com.paradigmas.Main'
+mainClassName = 'main.java.com.paradigmas.Main'
 group 'com.paradigmas'
 version '1.0-RELEASE'
 

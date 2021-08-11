@@ -1,4 +1,4 @@
-package com.paradigmas.TDA;
+package main.java.com.paradigmas.TDA;
 
 import java.util.ArrayList;
 import java.util.Date;

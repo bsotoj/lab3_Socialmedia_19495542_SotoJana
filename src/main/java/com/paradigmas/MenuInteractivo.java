@@ -1,4 +1,4 @@
-package com.paradigmas;
+package main.java.com.paradigmas;
 
 import java.util.ArrayList;
 import java.util.List;
